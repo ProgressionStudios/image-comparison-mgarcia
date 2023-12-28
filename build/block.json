@@ -3,10 +3,10 @@
   "apiVersion": 3,
   "name": "create-block/image-comparison-mgarcia",
   "version": "0.1.0",
-  "title": "Image Comparison Mgarcia",
-  "category": "widgets",
-  "icon": "smiley",
-  "description": "Example block scaffolded with Create Block tool.",
+  "title": "Image Comparison",
+  "category": "michaels-blocks",
+  "icon": "image-flip-horizontal",
+  "description": "Compare two images side-by-side",
   "example": {},
   "supports": {
     "html": false
