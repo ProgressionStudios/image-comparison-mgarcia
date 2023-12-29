@@ -11,7 +11,7 @@ export default function save( {attributes} ) {
 		<div { ...useBlockProps.save() }>
 			{ 'Image Comparison Mgarcia – hello from the saved content!' }
 			<h1>Has Image: {imageUrl}</h1>
-
+			{imageUrl && <img src={imageUrl} alt={imageAlt} />}
 		</div>
 	);
 }

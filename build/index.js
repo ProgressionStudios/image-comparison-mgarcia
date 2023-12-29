@@ -36,7 +36,10 @@ function Edit({
   const {
     imageUrl,
     imageId,
-    imageAlt
+    imageAlt,
+    afterimageUrl,
+    afterimageId,
+    afterimageAlt
   } = attributes;
   const setImageAttributes = media => {
     if (!media || !media.url) {
@@ -59,13 +62,34 @@ function Edit({
       imageUrl: ''
     });
   };
+  const setAfterImageAttributes = aftermedia => {
+    if (!aftermedia || !aftermedia.url) {
+      setAttributes({
+        afterimageUrl: null,
+        afterimageId: null,
+        afterimageAlt: null
+      });
+      return;
+    }
+    setAttributes({
+      afterimageUrl: aftermedia.url,
+      afterimageId: aftermedia.id,
+      afterimageAlt: aftermedia?.alt
+    });
+  };
+  const removeAfterMedia = () => {
+    setAttributes({
+      afterimageId: 0,
+      afterimageUrl: ''
+    });
+  };
   const inspectorControls = (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.InspectorControls, {
     key: "inspector"
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.PanelBody, {
     title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Image Selection', 'slideshow-mgarcia'),
     initialOpen: true
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "editor-post-featured-image"
+    className: "editor-post-image-before-mgarcia"
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("h2", {
     class: "title-compare-mgarcia"
   }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Before Image', 'slideshow-mgarcia')), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.MediaUploadCheck, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.MediaUpload, {
@@ -102,6 +126,44 @@ function Edit({
       isDefault: true,
       isLarge: true
     }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Replace image', 'image-comparison-mgarcia')))
+  }))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "editor-post-image-after-mgarcia"
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("h2", {
+    class: "title-compare-mgarcia"
+  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('After Image', 'slideshow-mgarcia')), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.MediaUploadCheck, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.MediaUpload, {
+    onSelect: setAfterImageAttributes,
+    value: afterimageId,
+    allowedTypes: ['image'],
+    render: ({
+      open
+    }) => (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+      class: "editor-image-mgarcia"
+    }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.Button, {
+      className: !afterimageUrl ? 'editor-post-featured-image__toggle' : 'editor-post-featured-image__preview',
+      onClick: open
+    }, !afterimageUrl && (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Choose After Image', 'image-comparison-mgarcia'), afterimageId != undefined && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.ResponsiveWrapper, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("img", {
+      src: afterimageUrl
+    })))))
+  })), afterimageId != 0 && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.MediaUploadCheck, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    class: "remove-image-mgarcia"
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.Button, {
+    onClick: removeAfterMedia,
+    isLink: true,
+    isDestructive: true
+  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Remove image', 'image-comparison-mgarcia'))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.MediaUpload, {
+    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Replace image', 'awp'),
+    value: afterimageId,
+    onSelect: setImageAttributes,
+    allowedTypes: ['image'],
+    render: ({
+      open
+    }) => (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+      class: "replace-image-mgarcia"
+    }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.Button, {
+      onClick: open,
+      isDefault: true,
+      isLarge: true
+    }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Replace image', 'image-comparison-mgarcia')))
   })))));
   const blockControls = (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.BlockControls, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.MediaReplaceFlow, {
     mediaId: imageId,
@@ -109,11 +171,20 @@ function Edit({
     allowedTypes: ['image'],
     accept: "image/*",
     onSelect: setImageAttributes,
-    name: !imageUrl ? (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Add Image', 'image-comparison-mgarcia') : (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Replace Before', 'image-comparison-mgarcia')
+    name: !imageUrl ? (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Before Image', 'image-comparison-mgarcia') : (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Replace Before', 'image-comparison-mgarcia')
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.MediaReplaceFlow, {
+    mediaId: imageId,
+    mediaUrl: imageUrl,
+    allowedTypes: ['image'],
+    accept: "image/*",
+    onSelect: setAfterImageAttributes,
+    name: !imageUrl ? (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('After Image', 'image-comparison-mgarcia') : (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Replace After', 'image-comparison-mgarcia')
   }));
   return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     ...(0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.useBlockProps)()
-  }, inspectorControls, blockControls, imageUrl ? (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("h1", null, "Has Image: ", imageUrl), imageUrl && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("img", {
+  }, inspectorControls, blockControls, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    class: "before-image-container"
+  }, imageUrl ? (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, imageUrl && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("img", {
     src: imageUrl,
     alt: imageAlt
   })) : (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.MediaPlaceholder, {
@@ -127,7 +198,23 @@ function Edit({
     onSelect: setImageAttributes,
     multiple: false,
     handleUpload: true
-  }));
+  })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    class: "after-image-container"
+  }, afterimageUrl ? (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, afterimageUrl && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("img", {
+    src: afterimageUrl,
+    alt: afterimageAlt
+  })) : (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.MediaPlaceholder, {
+    accept: "image/*",
+    labels: {
+      title: 'After Image',
+      instructions: ''
+    },
+    allowedTypes: ['image'],
+    icon: "format-image",
+    onSelect: setAfterImageAttributes,
+    multiple: false,
+    handleUpload: true
+  })));
 }
 
 /***/ }),
@@ -211,7 +298,10 @@ function save({
   } = attributes;
   return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     ..._wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.useBlockProps.save()
-  }, 'Image Comparison Mgarcia – hello from the saved content!', (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("h1", null, "Has Image: ", imageUrl));
+  }, 'Image Comparison Mgarcia – hello from the saved content!', (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("h1", null, "Has Image: ", imageUrl), imageUrl && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("img", {
+    src: imageUrl,
+    alt: imageAlt
+  }));
 }
 
 /***/ }),
@@ -306,7 +396,7 @@ module.exports = window["wp"]["i18n"];
   \************************/
 /***/ ((module) => {
 
-module.exports = JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"create-block/image-comparison-mgarcia","version":"0.1.0","title":"Image Comparison","category":"michaels-blocks","icon":"image-flip-horizontal","description":"Compare two images side-by-side","attributes":{"imageUrl":{"type":"string"},"imageId":{"type":"number"},"imageAlt":{"type":"string","source":"attribute","selector":"img","attribute":"alt","default":""}},"supports":{"html":false},"textdomain":"image-comparison-mgarcia","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css","viewScript":"file:./view.js"}');
+module.exports = JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"create-block/image-comparison-mgarcia","version":"0.1.0","title":"Image Comparison","category":"michaels-blocks","icon":"image-flip-horizontal","description":"Compare two images side-by-side","attributes":{"imageUrl":{"type":"string"},"imageId":{"type":"number"},"imageAlt":{"type":"string","source":"attribute","selector":"img","attribute":"alt","default":""},"afterimageUrl":{"type":"string"},"afterimageId":{"type":"number"},"afterimageAlt":{"type":"string","source":"attribute","selector":"img","attribute":"alt","default":""}},"supports":{"html":false},"textdomain":"image-comparison-mgarcia","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css","viewScript":"file:./view.js"}');
 
 /***/ })
 

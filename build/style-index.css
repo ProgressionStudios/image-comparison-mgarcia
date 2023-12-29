@@ -9,8 +9,16 @@
  */
 .wp-block-create-block-image-comparison-mgarcia {
   background-color: #21759b;
-  color: #fff;
-  padding: 2px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.after-image-container,
+.before-image-container {
+  flex-direction: column;
+  flex-basis: 100%;
+  flex: 1;
 }
 
 /*# sourceMappingURL=style-index.css.map*/
