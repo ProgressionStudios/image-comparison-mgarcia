@@ -7,7 +7,21 @@
   "category": "michaels-blocks",
   "icon": "image-flip-horizontal",
   "description": "Compare two images side-by-side",
-  "example": {},
+  "attributes": {
+    "imageUrl": {
+      "type": "string"
+    },
+    "imageId": {
+      "type": "number"
+    },
+    "imageAlt": {
+      "type": "string",
+      "source": "attribute",
+      "selector": "img",
+      "attribute": "alt",
+      "default": ""
+    }
+  },
   "supports": {
     "html": false
   },

@@ -23,15 +23,20 @@ function image_comparison_mgarcia_image_comparison_mgarcia_block_init() {
 add_action( 'init', 'image_comparison_mgarcia_image_comparison_mgarcia_block_init' );
 
 
-//Add new block category https://gutenberghub.com/how-to-create-custom-block-category/
-add_filter( 'block_categories_all' , function( $categories ) {
-
-    // Adding a new category.
-	$categories[] = array(
-		'slug'  => 'michaels-blocks',
-		'title' => 'Michaels Blocks'
-	);
-
-	return $categories;
-	
-} );
+//Add new block category https://developer.wordpress.org/block-editor/reference-guides/filters/block-filters/#block_categories_all
+if ( ! function_exists('filter_block_categories_mgarcia')) {
+	function filter_block_categories_mgarcia( $block_categories, $editor_context ) {
+		if ( ! empty( $editor_context->post ) ) {
+			array_push(
+				$block_categories,
+				array(
+					'slug'  => 'michaels-blocks',
+					'title' => __( 'Michaels Blocks', 'image-comparison-mgarcia' ),
+					'icon'  => null,
+				)
+			);
+		}
+		return $block_categories;
+	}
+	add_filter( 'block_categories_all', 'filter_block_categories_mgarcia', 10, 2 );
+}
