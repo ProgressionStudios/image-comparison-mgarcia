@@ -11,15 +11,13 @@ export default function save( {attributes} ) {
 		beforeLabel,
 		afterLabel,
 		displayVertical,
-		dividerPos
 	} = attributes;
 
 	return (
 		<div { ...useBlockProps.save() }>
 			{ imageUrl || afterimageUrl  ? (
 				<div class={ ( displayVertical == 1 ) ? ( 'vertical-compare-mgarcia' ) : ( 'horizontal-compare-mgarcia' )  }>
-					<h2>{ dividerPos }%</h2>
-					<img-comparison-slider direction={ ( displayVertical == 1 ) ? ( 'vertical' ) : ( 'horizontal' )  } value={ dividerPos }>
+					<img-comparison-slider direction={ ( displayVertical == 1 ) ? ( 'vertical' ) : ( 'horizontal' )  }>
 						<figure slot="first" class="before-compare-mgarcia">
 							<img slot="first" width="100%" src={imageUrl} alt={imageAlt} />
 							{ displaylabels && <figcaption>{ beforeLabel }</figcaption> }

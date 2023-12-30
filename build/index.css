@@ -11,6 +11,10 @@
   flex-wrap: wrap;
 }
 
+.hide-uploader-img-mgarcia {
+  display: none;
+}
+
 .after-image-container,
 .before-image-container {
   width: 50%;

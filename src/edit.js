@@ -15,8 +15,7 @@ import {
 	Button,
 	ResponsiveWrapper,
 	ToggleControl,
-	TextControl,
-	RangeControl
+	TextControl
 } from '@wordpress/components';
 
 export default function Edit( { attributes, setAttributes }) {
@@ -32,7 +31,6 @@ export default function Edit( { attributes, setAttributes }) {
 		beforeLabel,
 		afterLabel,
 		displayVertical,
-		dividerPos
 	} = attributes;
 
 	const setImageAttributes = (media) => {
@@ -201,15 +199,6 @@ export default function Edit( { attributes, setAttributes }) {
 						setAttributes( { displayVertical: value } )
 					}
 				/>
-				<RangeControl
-					label= { __( 'Divider Position (%)', 'image-comparison-mgarcia' ) }
-					value={ dividerPos }
-					onChange={ ( value ) =>
-						setAttributes( { dividerPos: value } )
-					}
-					min={ 10 }
-					max={ 90 }
-				/>
 			</PanelBody>
         </InspectorControls>
 	);
@@ -240,16 +229,33 @@ export default function Edit( { attributes, setAttributes }) {
 			{ inspectorControls }
 			{ blockControls }
 
-			<div class="before-image-container">
+			{ imageUrl && afterimageUrl ? (
+			<div>
+				{ imageUrl || afterimageUrl  ? (
+					<div class={ ( displayVertical == 1 ) ? ( 'vertical-compare-mgarcia' ) : ( 'horizontal-compare-mgarcia' )  }>
+						<img-comparison-slider direction={ ( displayVertical == 1 ) ? ( 'vertical' ) : ( 'horizontal' )  }>
+							<figure slot="first" class="before-compare-mgarcia">
+								<img slot="first" width="100%" src={imageUrl} alt={imageAlt} />
+								{ displaylabels && <figcaption>{ beforeLabel }</figcaption> }
+							</figure>
+							<figure slot="second" class="after-compare-mgarcia">
+								<img slot="second" width="100%" src={afterimageUrl} alt={afterimageAlt} />
+								{ displaylabels && <figcaption>{ afterLabel }</figcaption> }
+							</figure>
+						</img-comparison-slider>
+					</div>
+				) : null
+				}
+			</div>
+			) : null
+			}
+			
+			<div class={ ( imageUrl &&  afterimageUrl ) ? ( 'hide-uploader-img-mgarcia' ) : ( 'before-image-container' )  }>
 				{ imageUrl ? (
-
 					<div>
 						{imageUrl && <img src={imageUrl} alt={imageAlt} />}
-						{ displaylabels == 1 && <div class="label-after-mgarcia">{ beforeLabel }</div> }
 					</div>
-
 				) : (
-
 					<MediaPlaceholder
 						accept="image/*"
 						labels = { { title: 'Before Image', instructions: '' } }
@@ -259,20 +265,15 @@ export default function Edit( { attributes, setAttributes }) {
 						multiple={false}
 						handleUpload={true}
 					/>
-
 					)
 				}
 			</div>
-			<div class="after-image-container">
+			<div class={ ( imageUrl &&  afterimageUrl ) ? ( 'hide-uploader-img-mgarcia' ) : ( 'after-image-container' )  }>
 				{ afterimageUrl ? (
-
 					<div>
 						{ afterimageUrl && <img src={afterimageUrl} alt={afterimageAlt} /> }
-						{ displaylabels == 1 && <div class="label-after-mgarcia">{ afterLabel }</div> }
 					</div>
-
 					) : (
-
 					<MediaPlaceholder
 						accept="image/*"
 						labels = { { title: 'After Image', instructions: '' } }
@@ -282,7 +283,6 @@ export default function Edit( { attributes, setAttributes }) {
 						multiple={false}
 						handleUpload={true}
 					/>
-
 					)
 				}
 			</div>

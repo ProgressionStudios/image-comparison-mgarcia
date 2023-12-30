@@ -25,7 +25,7 @@ add_action( 'init', 'image_comparison_mgarcia_image_comparison_mgarcia_block_ini
 function comparison_enqueue_editor_content_assets_mgarcia() {
         wp_enqueue_script(
             'compare-editor-content-mgarcia-scripts',
-            plugins_url( 'assets/js/img-comparison-slider.js', __FILE__ )
+            plugins_url( 'assets/js/img-comparison-slider.js', __FILE__ ),
         );
 }
 add_action( 'enqueue_block_assets', 'comparison_enqueue_editor_content_assets_mgarcia' );

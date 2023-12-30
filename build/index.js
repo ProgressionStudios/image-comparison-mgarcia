@@ -43,8 +43,7 @@ function Edit({
     displaylabels,
     beforeLabel,
     afterLabel,
-    displayVertical,
-    dividerPos
+    displayVertical
   } = attributes;
   const setImageAttributes = media => {
     if (!media || !media.url) {
@@ -200,14 +199,6 @@ function Edit({
     onChange: value => setAttributes({
       displayVertical: value
     })
-  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.RangeControl, {
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Divider Position (%)', 'image-comparison-mgarcia'),
-    value: dividerPos,
-    onChange: value => setAttributes({
-      dividerPos: value
-    }),
-    min: 10,
-    max: 90
   })));
   const blockControls = (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.BlockControls, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.MediaReplaceFlow, {
     mediaId: imageId,
@@ -226,14 +217,32 @@ function Edit({
   }));
   return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     ...(0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.useBlockProps)()
-  }, inspectorControls, blockControls, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    class: "before-image-container"
+  }, inspectorControls, blockControls, imageUrl && afterimageUrl ? (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, imageUrl || afterimageUrl ? (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    class: displayVertical == 1 ? 'vertical-compare-mgarcia' : 'horizontal-compare-mgarcia'
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("img-comparison-slider", {
+    direction: displayVertical == 1 ? 'vertical' : 'horizontal'
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("figure", {
+    slot: "first",
+    class: "before-compare-mgarcia"
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("img", {
+    slot: "first",
+    width: "100%",
+    src: imageUrl,
+    alt: imageAlt
+  }), displaylabels && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("figcaption", null, beforeLabel)), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("figure", {
+    slot: "second",
+    class: "after-compare-mgarcia"
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("img", {
+    slot: "second",
+    width: "100%",
+    src: afterimageUrl,
+    alt: afterimageAlt
+  }), displaylabels && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("figcaption", null, afterLabel)))) : null) : null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    class: imageUrl && afterimageUrl ? 'hide-uploader-img-mgarcia' : 'before-image-container'
   }, imageUrl ? (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, imageUrl && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("img", {
     src: imageUrl,
     alt: imageAlt
-  }), displaylabels == 1 && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    class: "label-after-mgarcia"
-  }, beforeLabel)) : (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.MediaPlaceholder, {
+  })) : (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.MediaPlaceholder, {
     accept: "image/*",
     labels: {
       title: 'Before Image',
@@ -245,13 +254,11 @@ function Edit({
     multiple: false,
     handleUpload: true
   })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    class: "after-image-container"
+    class: imageUrl && afterimageUrl ? 'hide-uploader-img-mgarcia' : 'after-image-container'
   }, afterimageUrl ? (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, afterimageUrl && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("img", {
     src: afterimageUrl,
     alt: afterimageAlt
-  }), displaylabels == 1 && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    class: "label-after-mgarcia"
-  }, afterLabel)) : (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.MediaPlaceholder, {
+  })) : (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.MediaPlaceholder, {
     accept: "image/*",
     labels: {
       title: 'After Image',
@@ -348,16 +355,14 @@ function save({
     displaylabels,
     beforeLabel,
     afterLabel,
-    displayVertical,
-    dividerPos
+    displayVertical
   } = attributes;
   return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     ..._wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.useBlockProps.save()
   }, imageUrl || afterimageUrl ? (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     class: displayVertical == 1 ? 'vertical-compare-mgarcia' : 'horizontal-compare-mgarcia'
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("h2", null, dividerPos, "%"), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("img-comparison-slider", {
-    direction: displayVertical == 1 ? 'vertical' : 'horizontal',
-    value: dividerPos
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("img-comparison-slider", {
+    direction: displayVertical == 1 ? 'vertical' : 'horizontal'
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("figure", {
     slot: "first",
     class: "before-compare-mgarcia"
@@ -469,7 +474,7 @@ module.exports = window["wp"]["i18n"];
   \************************/
 /***/ ((module) => {
 
-module.exports = JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"create-block/image-comparison-mgarcia","version":"0.1.0","title":"Image Comparison","category":"michaels-blocks","icon":"image-flip-horizontal","description":"Compare two images side-by-side","attributes":{"imageUrl":{"type":"string"},"imageId":{"type":"number"},"imageAlt":{"type":"string","source":"attribute","selector":"img","attribute":"alt","default":""},"afterimageUrl":{"type":"string"},"afterimageId":{"type":"number"},"afterimageAlt":{"type":"string","source":"attribute","selector":"img","attribute":"alt","default":""},"displaylabels":{"type":"boolean","default":true},"displayVertical":{"type":"boolean","default":false},"beforeLabel":{"type":"string","default":"Before"},"afterLabel":{"type":"string","default":"After"},"dividerPos":{"type":"number","default":50}},"supports":{"html":false},"textdomain":"image-comparison-mgarcia","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css","viewScript":"file:./view.js"}');
+module.exports = JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"create-block/image-comparison-mgarcia","version":"0.1.0","title":"Image Comparison","category":"michaels-blocks","icon":"image-flip-horizontal","description":"Compare two images side-by-side","attributes":{"imageUrl":{"type":"string"},"imageId":{"type":"number"},"imageAlt":{"type":"string","source":"attribute","selector":"img","attribute":"alt","default":""},"afterimageUrl":{"type":"string"},"afterimageId":{"type":"number"},"afterimageAlt":{"type":"string","source":"attribute","selector":"img","attribute":"alt","default":""},"displaylabels":{"type":"boolean","default":true},"displayVertical":{"type":"boolean","default":false},"beforeLabel":{"type":"string","default":"Before"},"afterLabel":{"type":"string","default":"After"},"dividerPos":{"type":"number","default":50}},"supports":{"html":false},"textdomain":"image-comparison-mgarcia","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css"}');
 
 /***/ })
 
