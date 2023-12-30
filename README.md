@@ -19,6 +19,7 @@ A plugin that provides the users with a custom Image Comparison Block for compar
 * Vertical Display
 
 ![Sidebar Image Selection](https://gutenberg.progressionstudios.com/wp-content/uploads/2023/12/image-inspector.jpg)
+
 ![Comparison Options](https://gutenberg.progressionstudios.com/wp-content/uploads/2023/12/comparison-options.jpg)
 
 
