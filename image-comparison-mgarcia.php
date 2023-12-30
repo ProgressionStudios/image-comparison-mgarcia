@@ -23,6 +23,7 @@ function image_comparison_mgarcia_image_comparison_mgarcia_block_init() {
 add_action( 'init', 'image_comparison_mgarcia_image_comparison_mgarcia_block_init' );
 
 function comparison_enqueue_editor_content_assets_mgarcia() {
+		wp_enqueue_style( 'dashicons' );
         wp_enqueue_script(
             'compare-editor-content-mgarcia-scripts',
             plugins_url( 'assets/js/img-comparison-slider.js', __FILE__ ),
