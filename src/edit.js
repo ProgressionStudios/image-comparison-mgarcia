@@ -13,7 +13,10 @@ import './editor.scss';
 import {
 	PanelBody,
 	Button,
-	ResponsiveWrapper
+	ResponsiveWrapper,
+	ToggleControl,
+	TextControl,
+	RangeControl
 } from '@wordpress/components';
 
 export default function Edit( { attributes, setAttributes }) {
@@ -25,6 +28,11 @@ export default function Edit( { attributes, setAttributes }) {
 		afterimageUrl,
 		afterimageId,
 		afterimageAlt,
+		displaylabels,
+		beforeLabel,
+		afterLabel,
+		displayVertical,
+		dividerPos
 	} = attributes;
 
 	const setImageAttributes = (media) => {
@@ -75,9 +83,9 @@ export default function Edit( { attributes, setAttributes }) {
 
 	const inspectorControls = (
 		<InspectorControls key="inspector">
-			<PanelBody title={ __( 'Image Selection', 'slideshow-mgarcia' ) } initialOpen={ true }>
+			<PanelBody title={ __( 'Image Selection', 'image-comparison-mgarcia' ) } initialOpen={ true }>
 				<div className="editor-post-image-before-mgarcia">
-					<h2 class="title-compare-mgarcia">{ __( 'Before Image', 'slideshow-mgarcia' ) }</h2>
+					<h2 class="title-compare-mgarcia">{ __( 'Before Image', 'image-comparison-mgarcia' ) }</h2>
 					<MediaUploadCheck>
 						<MediaUpload
 							onSelect={setImageAttributes}
@@ -109,7 +117,7 @@ export default function Edit( { attributes, setAttributes }) {
 								onSelect={setImageAttributes}
 								allowedTypes={['image']}
 								render={({open}) => (
-									<div class="replace-image-mgarcia"><Button onClick={open} isDefault isLarge>{__('Replace image', 'image-comparison-mgarcia')}</Button></div>
+									<div class="replace-image-mgarcia"><Button onClick={open} isSecondary isLarge>{__('Replace image', 'image-comparison-mgarcia')}</Button></div>
 								)}
 							/>
 						</MediaUploadCheck>
@@ -117,7 +125,7 @@ export default function Edit( { attributes, setAttributes }) {
 				</div>
 
 				<div className="editor-post-image-after-mgarcia">
-					<h2 class="title-compare-mgarcia">{ __( 'After Image', 'slideshow-mgarcia' ) }</h2>
+					<h2 class="title-compare-mgarcia">{ __( 'After Image', 'image-comparison-mgarcia' ) }</h2>
 					<MediaUploadCheck>
 						<MediaUpload
 							onSelect={setAfterImageAttributes}
@@ -146,15 +154,62 @@ export default function Edit( { attributes, setAttributes }) {
 							<MediaUpload
 								title={__('Replace image', 'awp')}
 								value={afterimageId}
-								onSelect={setImageAttributes}
+								onSelect={setAfterImageAttributes}
 								allowedTypes={['image']}
 								render={({open}) => (
-									<div class="replace-image-mgarcia"><Button onClick={open} isDefault isLarge>{__('Replace image', 'image-comparison-mgarcia')}</Button></div>
+									<div class="replace-image-mgarcia"><Button onClick={open} isSecondary isLarge>{__('Replace image', 'image-comparison-mgarcia')}</Button></div>
 								)}
 							/>
 						</MediaUploadCheck>
 					}
 					</div>
+			</PanelBody>
+			<PanelBody title={ __( 'Comparison Options', 'image-comparison-mgarcia' ) } initialOpen={ false }>
+				<ToggleControl
+					label={ __( 'Display labels', 'image-comparison-mgarcia' ) }
+					checked={ displaylabels }
+					onChange={ ( value ) =>
+						setAttributes( { displaylabels: value } )
+					}
+				/>
+				{ displaylabels == 1 && (
+					<TextControl
+						label="Before Label"
+						value={ beforeLabel }
+						onChange={ ( nextValue ) => {
+							setAttributes( {
+								beforeLabel: nextValue,
+							} );
+						} }
+					/>
+				) }
+				{ displaylabels == 1 && (
+					<TextControl
+						label="After Label"
+						value={ afterLabel }
+						onChange={ ( nextValue ) => {
+							setAttributes( {
+								afterLabel: nextValue,
+							} );
+						} }
+					/>
+				) }
+				<ToggleControl
+					label={ __( 'Display Vertical', 'image-comparison-mgarcia' ) }
+					checked={ displayVertical }
+					onChange={ ( value ) =>
+						setAttributes( { displayVertical: value } )
+					}
+				/>
+				<RangeControl
+					label= { __( 'Divider Position (%)', 'image-comparison-mgarcia' ) }
+					value={ dividerPos }
+					onChange={ ( value ) =>
+						setAttributes( { dividerPos: value } )
+					}
+					min={ 10 }
+					max={ 90 }
+				/>
 			</PanelBody>
         </InspectorControls>
 	);
@@ -190,6 +245,7 @@ export default function Edit( { attributes, setAttributes }) {
 
 					<div>
 						{imageUrl && <img src={imageUrl} alt={imageAlt} />}
+						{ displaylabels == 1 && <div class="label-after-mgarcia">{ beforeLabel }</div> }
 					</div>
 
 				) : (
@@ -211,7 +267,8 @@ export default function Edit( { attributes, setAttributes }) {
 				{ afterimageUrl ? (
 
 					<div>
-						{afterimageUrl && <img src={afterimageUrl} alt={afterimageAlt} />}
+						{ afterimageUrl && <img src={afterimageUrl} alt={afterimageAlt} /> }
+						{ displaylabels == 1 && <div class="label-after-mgarcia">{ afterLabel }</div> }
 					</div>
 
 					) : (

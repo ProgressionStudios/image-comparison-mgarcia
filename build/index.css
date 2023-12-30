@@ -6,6 +6,21 @@
  *
  * Replace them with your own styles or remove the file completely.
  */
+.wp-block-create-block-image-comparison-mgarcia {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.after-image-container,
+.before-image-container {
+  width: 50%;
+}
+
+.after-image-container img,
+.before-image-container img {
+  max-width: 100%;
+}
+
 /* Inspector Styling */
 .editor-post-image-before-mgarcia {
   margin-bottom: 20px;

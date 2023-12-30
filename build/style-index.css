@@ -7,18 +7,58 @@
  *
  * Replace them with your own styles or remove the file completely.
  */
-.wp-block-create-block-image-comparison-mgarcia {
-  background-color: #21759b;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
+/* Comparison Slider */
+img-comparison-slider {
+  visibility: hidden;
 }
 
-.after-image-container,
-.before-image-container {
-  flex-direction: column;
-  flex-basis: 100%;
-  flex: 1;
+img-comparison-slider [slot=second] {
+  display: none;
+}
+
+img-comparison-slider.rendered {
+  visibility: inherit;
+}
+
+img-comparison-slider.rendered [slot=second] {
+  display: unset;
+}
+
+.before-compare-mgarcia,
+.after-compare-mgarcia {
+  margin: 0;
+}
+
+.before-compare-mgarcia figcaption,
+.after-compare-mgarcia figcaption {
+  background: rgba(0, 0, 0, 0.6);
+  border-radius: 4px;
+  color: #ffffff;
+  padding: 12px;
+  position: absolute;
+  top: 50%;
+  font-size: 13px;
+  transform: translateY(-50%);
+  line-height: 100%;
+}
+
+.before-compare-mgarcia figcaption {
+  left: 12px;
+}
+
+.after-compare-mgarcia figcaption {
+  right: 12px;
+}
+
+.vertical-compare-mgarcia .before-compare-mgarcia figcaption {
+  top: 12px;
+  transform: none;
+}
+
+.vertical-compare-mgarcia .after-compare-mgarcia figcaption {
+  top: auto;
+  bottom: 12px;
+  transform: none;
 }
 
 /*# sourceMappingURL=style-index.css.map*/

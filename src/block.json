@@ -33,6 +33,26 @@
 			"selector": "img",
 			"attribute": "alt",
 			"default": ""
+		},
+		"displaylabels": {
+			"type": "boolean",
+			"default": true
+		},
+		"displayVertical": {
+			"type": "boolean",
+			"default": false
+		},
+		"beforeLabel": {
+			"type": "string",
+			"default": "Before"
+		},
+		"afterLabel": {
+			"type": "string",
+			"default": "After"
+		},
+		"dividerPos": {
+			"type": "number",
+			"default": 50
 		}
 	},
 	"supports": {
