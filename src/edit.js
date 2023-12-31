@@ -108,14 +108,14 @@ export default function Edit( { attributes, setAttributes }) {
 					</MediaUploadCheck>
 					{imageId != 0 && 
 						<MediaUploadCheck>
-							<div class="remove-image-mgarcia"><Button onClick={removeMedia} isLink isDestructive>{__('Remove image', 'image-comparison-mgarcia')}</Button></div>
+							<div className="remove-image-mgarcia"><Button onClick={removeMedia} isLink isDestructive>{__('Remove image', 'image-comparison-mgarcia')}</Button></div>
 							<MediaUpload
 								title={__('Replace image', 'awp')}
 								value={imageId}
 								onSelect={setImageAttributes}
 								allowedTypes={['image']}
 								render={({open}) => (
-									<div class="replace-image-mgarcia"><Button onClick={open} isSecondary isLarge>{__('Replace image', 'image-comparison-mgarcia')}</Button></div>
+									<div className="replace-image-mgarcia"><Button onClick={open} isSecondary isLarge>{__('Replace image', 'image-comparison-mgarcia')}</Button></div>
 								)}
 							/>
 						</MediaUploadCheck>
@@ -123,7 +123,7 @@ export default function Edit( { attributes, setAttributes }) {
 				</div>
 
 				<div className="editor-post-image-after-mgarcia">
-					<h2 class="title-compare-mgarcia">{ __( 'After Image', 'image-comparison-mgarcia' ) }</h2>
+					<h2 className="title-compare-mgarcia">{ __( 'After Image', 'image-comparison-mgarcia' ) }</h2>
 					<MediaUploadCheck>
 						<MediaUpload
 							onSelect={setAfterImageAttributes}
