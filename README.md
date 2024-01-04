@@ -8,7 +8,7 @@ A plugin that provides the users with a custom Image Comparison Block for compar
 2. Find the "Image Comparison" block under the block category "Michaels Blocks"
 3. Choose a Before and After image to display
 
-![Selecting image comparison block](https://gutenberg.progressionstudios.com/wp-content/uploads/2023/12/image-compare.jpg)
+![Selecting image comparison block](https://gutenberg.progressionstudios.com/wp-content/uploads/2024/01/image-compare-block.jpg)
 
 ![Image Selection](https://gutenberg.progressionstudios.com/wp-content/uploads/2023/12/image-compare-layout.jpg)
 
