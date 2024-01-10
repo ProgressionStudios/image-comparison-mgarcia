@@ -274,26 +274,6 @@ function Edit({
 
 /***/ }),
 
-/***/ "./src/example.js":
-/*!************************!*\
-  !*** ./src/example.js ***!
-  \************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-const example = {
-  attributes: {
-    imageUrl: "https://gutenberg.progressionstudios.com/wp-content/uploads/2023/12/2-jesse-gardner-0tKc9vaYUAw-unsplash.jpg",
-    afterimageUrl: "https://gutenberg.progressionstudios.com/wp-content/uploads/2023/12/jesse-gardner-0tKc9vaYUAw-unsplash.jpg"
-  }
-};
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (example);
-
-/***/ }),
-
 /***/ "./src/index.js":
 /*!**********************!*\
   !*** ./src/index.js ***!
@@ -307,7 +287,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _edit__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./edit */ "./src/edit.js");
 /* harmony import */ var _save__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./save */ "./src/save.js");
 /* harmony import */ var _block_json__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./block.json */ "./src/block.json");
-/* harmony import */ var _example__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./example */ "./src/example.js");
 /**
  * Registers a new block provided a unique name and an object defining its behavior.
  *
@@ -331,7 +310,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-
 /**
  * Every block starts by registering a new block type definition.
  *
@@ -345,8 +323,7 @@ __webpack_require__.r(__webpack_exports__);
   /**
    * @see ./save.js
    */
-  save: _save__WEBPACK_IMPORTED_MODULE_3__["default"],
-  example: _example__WEBPACK_IMPORTED_MODULE_5__["default"]
+  save: _save__WEBPACK_IMPORTED_MODULE_3__["default"]
 });
 
 /***/ }),
@@ -497,7 +474,7 @@ module.exports = window["wp"]["i18n"];
   \************************/
 /***/ ((module) => {
 
-module.exports = JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"create-block/image-comparison-mgarcia","version":"0.1.0","title":"Image Comparison","category":"michaels-blocks","icon":"image-flip-horizontal","description":"Compare two images side-by-side","attributes":{"imageUrl":{"type":"string"},"imageId":{"type":"number"},"imageAlt":{"type":"string","source":"attribute","selector":"img","attribute":"alt","default":""},"afterimageUrl":{"type":"string"},"afterimageId":{"type":"number"},"afterimageAlt":{"type":"string","source":"attribute","selector":"img","attribute":"alt","default":""},"displaylabels":{"type":"boolean","default":true},"displayVertical":{"type":"boolean","default":false},"beforeLabel":{"type":"string","default":"Before"},"afterLabel":{"type":"string","default":"After"},"dividerPos":{"type":"number","default":50}},"supports":{"html":false},"textdomain":"image-comparison-mgarcia","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css"}');
+module.exports = JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"create-block/image-comparison-mgarcia","version":"0.1.0","title":"Image Comparison","category":"michaels-blocks","icon":"image-flip-horizontal","description":"Compare two images side-by-side","attributes":{"imageUrl":{"type":"string"},"imageId":{"type":"number"},"imageAlt":{"type":"string","source":"attribute","selector":"img","attribute":"alt","default":""},"afterimageUrl":{"type":"string"},"afterimageId":{"type":"number"},"afterimageAlt":{"type":"string","source":"attribute","selector":"img","attribute":"alt","default":""},"displaylabels":{"type":"boolean","default":true},"displayVertical":{"type":"boolean","default":false},"beforeLabel":{"type":"string","default":"Before"},"afterLabel":{"type":"string","default":"After"},"dividerPos":{"type":"number","default":50}},"supports":{"html":false},"example":{"attributes":{"imageUrl":"https://gutenberg.progressionstudios.com/wp-content/uploads/2023/12/2-jesse-gardner-0tKc9vaYUAw-unsplash.jpg","afterimageUrl":"https://gutenberg.progressionstudios.com/wp-content/uploads/2023/12/jesse-gardner-0tKc9vaYUAw-unsplash.jpg"}},"textdomain":"image-comparison-mgarcia","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css"}');
 
 /***/ })
 

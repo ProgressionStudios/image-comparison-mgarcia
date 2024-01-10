@@ -5,7 +5,7 @@
  * Requires at least: 6.1
  * Requires PHP:      7.0
  * Version:           0.1.0
- * Author:            The WordPress Contributors
+ * Author:            Michael Garcia
  * License:           GPL-2.0-or-later
  * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
  * Text Domain:       image-comparison-mgarcia
@@ -32,7 +32,7 @@ function comparison_enqueue_editor_content_assets_mgarcia() {
 add_action( 'enqueue_block_assets', 'comparison_enqueue_editor_content_assets_mgarcia' );
 
 
-//Add new block category https://developer.wordpress.org/block-editor/reference-guides/filters/block-filters/#block_categories_all
+//Add new block category
 if ( ! function_exists('filter_block_categories_mgarcia')) {
 	function filter_block_categories_mgarcia( $block_categories, $editor_context ) {
 		if ( ! empty( $editor_context->post ) ) {
